@@ -1,0 +1,241 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Apr 22, 2016 at 04:17 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `encryption`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data`
+--
+
+CREATE TABLE `data` (
+  `person_id` int(11) NOT NULL,
+  `first_num` varchar(100) NOT NULL,
+  `second_num` varchar(100) NOT NULL,
+  `result` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`person_id`, `first_num`, `second_num`, `result`) VALUES
+(1, '85061819862663568905982465872', '200191311008231202007616387663', '541218612564756897692999576129'),
+(2, '495046408079212632644860242230', '553076072414295087904696552816', '573881476667764695114886317041'),
+(3, '33835859619529262501632546265', '1291856773072326204440914312', '672530741394777106317615499559'),
+(4, '87784500129329556479781497409', '567720364455607495996785826526', '776330982384141421442123636953'),
+(5, '262195009798850366026610544782', '200621753254632095025950038177', '579692681502194515481297192111'),
+(6, '1077075295522168894485714805361', '748543607659983637104993204756', '1191571585872767067440171497309');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `demo`
+--
+
+CREATE TABLE `demo` (
+  `id` int(11) NOT NULL,
+  `num1` int(11) NOT NULL,
+  `num2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dummy`
+--
+
+CREATE TABLE `dummy` (
+  `person_id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `result` varchar(100) NOT NULL,
+  `public_key` varchar(100) NOT NULL,
+  `private_key` varchar(100) NOT NULL,
+  `modulus_value` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dummy`
+--
+
+INSERT INTO `dummy` (`person_id`, `first_name`, `last_name`, `result`, `public_key`, `private_key`, `modulus_value`) VALUES
+(12, '397877009475306290942265018500', '446336085183714348328895209281', '177586866793811829585847089029978378577967565947722836698500', '65537', '314384045407793174516980191749', '673524473992043148505858354301'),
+(13, '711509733123200681315043023742', '783766848668461631152499230862', '557657741326909150450157904126936378689967479033093805125604', '866313127157789', '734530027601897274669014224949', '900248067299862069315963293597'),
+(14, '120790480657731688158114856367', '747514810716249506233608998149', '90292673285189100033313096711539973275592403402367903864683', '842250765079651', '46483801601026312613840449651', '753485151687840833640436675417');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_client`
+--
+
+CREATE TABLE `key_client` (
+  `public_key` varchar(1000) NOT NULL,
+  `private_key` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `key_data`
+--
+
+CREATE TABLE `key_data` (
+  `person_id` int(11) NOT NULL,
+  `private_key` varchar(100) NOT NULL,
+  `public_key` varchar(100) NOT NULL,
+  `modulus_value` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `key_data`
+--
+
+INSERT INTO `key_data` (`person_id`, `private_key`, `public_key`, `modulus_value`) VALUES
+(1, '39893651282039862608550637841', '722808809464817', '541218612564756897692999576129'),
+(2, '172244473083234481672231420709', '606428849563853', '573881476667764695114886317041'),
+(3, '404437000204291262903176009897', '1051293732214057', '672530741394777106317615499559'),
+(4, '252218479721124014389917402895', '1021617521874739', '776330982384141421442123636953'),
+(5, '261101070599345468198015761271', '853828544380631', '579692681502194515481297192111'),
+(6, '594701574973087318382816413825', '1072694661254017', '1191571585872767067440171497309');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person`
+--
+
+CREATE TABLE `person` (
+  `person_id` int(11) NOT NULL,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `photo` mediumblob,
+  `result` varchar(60) DEFAULT NULL,
+  `key1` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `person`
+--
+
+INSERT INTO `person` (`person_id`, `first_name`, `last_name`, `photo`, `result`, `key1`) VALUES
+(1, 'Tom', 'Eagar', NULL, NULL, NULL),
+(2, '666225835856117189991154032972', 'Eagar', NULL, NULL, NULL),
+(3, '148378050008191997355930812915', '384923191503335272994587267185', NULL, NULL, NULL),
+(4, '167116078617913064111654132892', '227705626141404129149251982444', NULL, '38053271319988012640926264886080546231554360166196826948048', NULL),
+(5, '191934725529563892671091449848', '282336354194582680060629831950', NULL, '54190150649354961957047212772058340597945543867366093043600', 'public = 65537\nprivate = 202334720081488794207015892073\nmodulus = 760955500400583124332579403489'),
+(6, '77984841893829190450738921260', '206480669016011393151484854607', NULL, '16102362327345724179415469885118348394612613462787121244820', 'public = 65537\nprivate = 498030272808588071071431047873\nmodulus = 730874870998623168610591200349'),
+(7, '130639986840620815266521873467', '364827463337278549629985142433', NULL, '47661055009479142663961777480495919956535722695617998525211', 'public = 65537\nprivate = 650671128209090720582761486337\nmodulus = 795341572094883509224968250073'),
+(8, '24047033579306522975197141681', '7385045424838603095943779119', NULL, '177588435315797895399200982955878975877324919922012359039', 'public = 65537\nprivate = 177131867310883275785764744193\nmodulus = 658761274994517490209289166713');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(32) NOT NULL,
+  `last_name` varchar(32) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  `num_points` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`person_id`);
+
+--
+-- Indexes for table `demo`
+--
+ALTER TABLE `demo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dummy`
+--
+ALTER TABLE `dummy`
+  ADD PRIMARY KEY (`person_id`);
+
+--
+-- Indexes for table `key_data`
+--
+ALTER TABLE `key_data`
+  ADD PRIMARY KEY (`person_id`);
+
+--
+-- Indexes for table `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`person_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `data`
+--
+ALTER TABLE `data`
+  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `demo`
+--
+ALTER TABLE `demo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dummy`
+--
+ALTER TABLE `dummy`
+  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `key_data`
+--
+ALTER TABLE `key_data`
+  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `person`
+--
+ALTER TABLE `person`
+  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
